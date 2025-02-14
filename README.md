@@ -6,3 +6,7 @@ GOOGLE_API_KEY="your api key"
 
 ## Install Requirements
 pip install -r req.txt
+
+
+## Run Streamlit App
+python -m streamlit run main.py
