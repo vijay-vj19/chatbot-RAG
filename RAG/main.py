@@ -23,7 +23,7 @@ if "GOOGLE_API_KEY" not in os.environ:
 
 
 
-loader = UnstructuredExcelLoader("unprotected.xlsx", mode="elements")
+loader = UnstructuredExcelLoader("resources\unprotected.xlsx", mode="elements")
 docs = loader.load()
 
 print(len(docs))
