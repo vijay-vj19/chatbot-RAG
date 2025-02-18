@@ -23,7 +23,7 @@ if "GOOGLE_API_KEY" not in os.environ:
 
 
 
-loader = UnstructuredExcelLoader("resources\unprotected.xlsx", mode="elements")
+loader = UnstructuredExcelLoader("resources\Preprocessed.xlsx", mode="elements")
 docs = loader.load()
 
 print(len(docs))
@@ -56,7 +56,11 @@ qa_chain = RetrievalQA.from_chain_type(
     chain_type="stuff",
 )
 
+
+from langchain_core.prompts import ChatPromptTemplate
+
+
 # 5. Query the RAG System
 query = "what are the different client data in the data?"
-result = qa_chain.run(query)
+result = qa_chain.invoke(query)
 print(result)
