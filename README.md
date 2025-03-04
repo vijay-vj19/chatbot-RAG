@@ -9,5 +9,5 @@ pip install -r req.txt
 
 
 ## Run Streamlit App
-cd app
-python -m streamlit run main.py
+# cd app
+# python -m streamlit run main.py
