@@ -5,7 +5,6 @@ warnings.filterwarnings("ignore")
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_community.document_loaders import UnstructuredExcelLoader
 from langchain_google_genai import GoogleGenerativeAIEmbeddings
-from langchain_community.vectorstores import Chroma
 from langchain_community.vectorstores import FAISS
 from langchain_community.vectorstores.utils import filter_complex_metadata
 from langchain.chains import RetrievalQA
@@ -23,7 +22,7 @@ if "GOOGLE_API_KEY" not in os.environ:
 
 
 
-loader = UnstructuredExcelLoader("resources\Preprocessed.xlsx", mode="elements")
+loader = UnstructuredExcelLoader("resources\RAG_knowledge_base.xlsx", mode="elements")
 docs = loader.load()
 
 print(len(docs))
@@ -40,9 +39,9 @@ docs = text_splitter.split_documents(docs)
 docs = filter_complex_metadata(docs)
 # 3. Create Embeddings and Vector Store (Chroma)
 embeddings = GoogleGenerativeAIEmbeddings(model="models/embedding-001") 
-vectorstore = Chroma.from_documents(docs, embeddings)
+vectorstore = FAISS.from_documents(docs, embeddings)
+vectorstore.save_local("faiss_index")
 
-vectorstore.persist()
 
 
 
@@ -61,6 +60,6 @@ from langchain_core.prompts import ChatPromptTemplate
 
 
 # 5. Query the RAG System
-query = "what are the different client data in the data?"
+query = ""
 result = qa_chain.invoke(query)
 print(result)
