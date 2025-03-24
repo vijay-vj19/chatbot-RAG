@@ -60,6 +60,6 @@ from langchain_core.prompts import ChatPromptTemplate
 
 
 # 5. Query the RAG System
-query = ""
+query = "what is q2 loan data"
 result = qa_chain.invoke(query)
 print(result)

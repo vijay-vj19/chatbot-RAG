@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
-from plots.barchart_utils import predict_and_plot_lists
-
+from app.plots.barchart_utils import predict_and_plot_lists
+from RAG.chatbot import get_answer 
 
 
 def main():
@@ -46,7 +46,7 @@ def main():
             # Add user message to chat history
             st.session_state.messages.append({"role": "user", "content": prompt})
 
-            response = f"Echo: {prompt}"
+            response = get_answer(prompt)
             # Display assistant response in chat message container
             with st.chat_message("assistant"):
                 st.markdown(response)
@@ -62,7 +62,7 @@ def main():
     st.subheader("PCCP")
 
     #preprocessing data
-    file_path = r"..\resources\Preprocessed.xlsx"
+    file_path = r"resources\Preprocessed.xlsx"
     sheet_name = "Portfolio Trend"
 
     df = pd.read_excel(file_path, sheet_name=sheet_name,header=None)
