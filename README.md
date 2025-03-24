@@ -1,13 +1,12 @@
 # chatbot-RAG
 
-## Add ENV file .env
-It should look like 
-GOOGLE_API_KEY="your api key"
-
 ## Install Requirements
 pip install -r req.txt
 
+## Add ENV file .env
+GOOGLE_API_KEY="your api key"
 
 ## Run Streamlit App
-### cd app
-### python -m streamlit run main.py
+python -m streamlit run app/main.py
+
+
